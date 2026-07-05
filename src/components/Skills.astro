@@ -120,13 +120,13 @@ const softSkills = lang === 'es'
         <div class="relative flex w-full overflow-hidden whitespace-nowrap p-4 mask-edges">
           <div class={`flex shrink-0 w-max ${track.dir === 'reverse' ? 'track-reverse' : 'track-normal'}`} style={`animation-duration: ${track.speed};`}>
             {track.items.map(item => (
-              <div class="flex items-center gap-2 mx-8 opacity-70 hover:opacity-100 transition-opacity">
+              <div class="flex items-center gap-2 mx-8 opacity-70 hover:opacity-100 transition-all duration-300">
                 <img src={item.iconSrc || `https://cdn.simpleicons.org/${item.slug}/000000`} class={`w-6 h-6 object-contain ${(item.slug === 'mysql' || item.slug === 'microsoftsqlserver') ? 'scale-[1.7]' : ''} ${i % 2 === 0 ? 'invert dark:invert-0' : 'dark:invert'} ${item.iconSrc ? 'brightness-0' : ''}`} alt={item.name} loading="lazy" />
                 <span class="font-sans font-black text-2xl md:text-3xl uppercase tracking-tighter">{item.name}</span>
               </div>
             ))}
             {track.items.map(item => (
-              <div class="flex items-center gap-2 mx-8 opacity-70 hover:opacity-100 transition-opacity" aria-hidden="true">
+              <div class="flex items-center gap-2 mx-8 opacity-70 hover:opacity-100 transition-all duration-300" aria-hidden="true">
                 <img src={item.iconSrc || `https://cdn.simpleicons.org/${item.slug}/000000`} class={`w-6 h-6 object-contain ${(item.slug === 'mysql' || item.slug === 'microsoftsqlserver') ? 'scale-[1.7]' : ''} ${i % 2 === 0 ? 'invert dark:invert-0' : 'dark:invert'} ${item.iconSrc ? 'brightness-0' : ''}`} alt={item.name} loading="lazy" />
                 <span class="font-sans font-black text-2xl md:text-3xl uppercase tracking-tighter">{item.name}</span>
               </div>

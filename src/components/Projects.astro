@@ -42,20 +42,20 @@ const projects = [
         href={proj.link} 
         target={proj.link !== '#' ? "_blank" : undefined}
         rel={proj.link !== '#' ? "noopener noreferrer" : undefined}
-        class={`group block p-8 relative overflow-hidden transition-all duration-300 hover:bg-black/[0.03] dark:hover:bg-white/[0.05] focus-visible:ring-2 focus-visible:ring-electric focus-visible:outline-none cursor-pointer ${idx !== projects.length - 1 ? 'border-tech-b' : ''}`}
+        class={`group block p-8 relative overflow-hidden hover:bg-black/[0.03] dark:hover:bg-white/[0.05] focus-visible:ring-2 focus-visible:ring-electric focus-visible:outline-none cursor-pointer ${idx !== projects.length - 1 ? 'border-tech-b' : ''}`}
         aria-label={`View project ${proj.name}`}
       >
         <!-- Fade-in overlay background gradient -->
-        <div class="absolute inset-0 bg-gradient-to-r from-transparent to-black/[0.02] dark:to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent to-black/[0.02] dark:to-white/[0.02] opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
         <article class="relative z-10 opacity-70 group-hover:opacity-100 transition-all duration-300">
           <header class="flex justify-between items-baseline mb-4">
-            <h3 class="font-sans font-black text-2xl uppercase tracking-tight group-hover:text-electric  transition-colors duration-300">{proj.name}</h3>
-            <span class="font-mono text-xs opacity-50">[{proj.id}]</span>
+            <h3 class="font-sans font-black text-2xl uppercase tracking-tight group-hover:text-electric transition-colors duration-300">{proj.name}</h3>
+            <span class="font-mono text-xs opacity-50 transition-colors duration-300">[{proj.id}]</span>
           </header>
-          <p class="font-mono text-sm mb-6 max-w-lg opacity-80">{proj.desc}</p>
+          <p class="font-mono text-sm mb-6 max-w-lg opacity-80 transition-colors duration-300">{proj.desc}</p>
           <ul class="flex flex-wrap gap-2">
             {proj.tech.map(t => (
-              <li class="font-mono text-[10px] uppercase border border-current px-2 py-1 rounded-sm tracking-tight">{t}</li>
+              <li class="font-mono text-[10px] uppercase border border-current px-2 py-1 rounded-sm tracking-tight transition-colors duration-300">{t}</li>
             ))}
           </ul>
         </article>

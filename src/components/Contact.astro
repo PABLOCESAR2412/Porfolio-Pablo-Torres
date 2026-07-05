@@ -33,7 +33,7 @@ const t = useTranslations(lang);
           <textarea id="message" name="message" class="bg-transparent border-tech-b p-3 font-mono text-base focus:border-pure dark:focus:border-bone focus:bg-black/[0.02] dark:focus:bg-white/[0.02] outline-none transition-all duration-300 min-h-[120px] resize-y" required></textarea>
         </div>
         
-        <button id="submit-btn" type="submit" class="mt-4 bg-pure dark:bg-bone text-bone dark:text-stone px-8 py-4 font-sans font-bold uppercase tracking-widest text-sm hover:bg-electric dark:hover:bg-gray-300 transition-colors w-fit group">
+        <button id="submit-btn" type="submit" class="mt-4 bg-pure dark:bg-bone text-bone dark:text-stone px-8 py-4 font-sans font-bold uppercase tracking-widest text-sm hover:bg-electric dark:hover:bg-gray-300 transition-colors duration-300 w-fit group">
           <span id="btn-text">{lang === 'es' ? 'Enviar Mensaje' : 'Send Message'}</span>
           <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">-&gt;</span>
         </button>
@@ -91,7 +91,7 @@ const t = useTranslations(lang);
   
   <footer class="mt-24 pt-8 border-t-[1px] border-pure dark:border-bone border-opacity-10 dark:border-opacity-10 text-center font-mono text-xs opacity-70">
     <p>{lang === 'es' ? 'Hecho por ' : 'Made by '} 
-      <a href="https://www.linkedin.com/in/pablo-cesar-torres/" target="_blank" rel="noopener noreferrer" class="hover:text-electric transition-colors underline underline-offset-4">Pablo Torres</a>
+      <a href="https://www.linkedin.com/in/pablo-cesar-torres/" target="_blank" rel="noopener noreferrer" class="hover:text-electric transition-colors duration-300 underline underline-offset-4">Pablo Torres</a>
     </p>
   </footer>
 </section>

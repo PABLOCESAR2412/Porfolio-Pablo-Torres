@@ -13,6 +13,13 @@
     background-image: radial-gradient(rgba(255,255,255,0.25) 1.5px, transparent 1.5px);
   }
   
+  /* Ensure ALL text and backgrounds transition smoothly exactly like the hero */
+  body, body *, body ::before, body ::after {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+  
   /* SVG noise filter for bitmap dithering aesthetic */
   body::after {
     content: "";

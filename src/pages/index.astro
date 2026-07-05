@@ -21,7 +21,7 @@ const t = useTranslations(lang);
       <span>[00] {t('hero.pretitle')}</span>
       <span class="border border-electric dark:border-gray-400 px-2 py-1 animate-pulse">{t('hero.status')}</span>
     </div>
-    <h1 class="relative z-10 font-sans font-black text-5xl md:text-[5rem] lg:text-[5.5rem] uppercase tracking-tighter leading-[0.85] max-w-4xl text-balance">
+    <h1 class="relative z-10 font-sans font-black text-5xl md:text-[5rem] lg:text-[5.5rem] uppercase tracking-tighter leading-[0.85] max-w-4xl text-balance transition-colors duration-300">
       {t('hero.name').split(' ').slice(0, 2).join(' ')}
       <span class="text-transparent" style="-webkit-text-stroke: 1.5px currentColor;">{t('hero.name').split(' ').slice(2).join(' ')}</span>
     </h1>
@@ -42,9 +42,9 @@ const t = useTranslations(lang);
       }
     </script>
     <div class="relative z-10 flex gap-4 mt-8 font-mono text-xs">
-      <a href="https://github.com/PABLOCESAR2412" target="_blank" rel="noopener noreferrer" class="hover:text-electric dark:hover:text-electric transition-colors focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">[GITHUB]</a>
-      <a href="https://www.linkedin.com/in/pablo-cesar-torres/" target="_blank" rel="noopener noreferrer" class="hover:text-electric dark:hover:text-electric transition-colors focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">[LINKEDIN]</a>
-      <a href="/CV-Pablo-Torres-Es.pdf" download="Pablo_Torres_CV_ES.pdf" class="hover:text-electric dark:hover:text-electric transition-colors focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">[CV]</a>
+      <a href="https://github.com/PABLOCESAR2412" target="_blank" rel="noopener noreferrer" class="hover:text-electric dark:hover:text-electric transition-colors duration-300 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">[GITHUB]</a>
+      <a href="https://www.linkedin.com/in/pablo-cesar-torres/" target="_blank" rel="noopener noreferrer" class="hover:text-electric dark:hover:text-electric transition-colors duration-300 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">[LINKEDIN]</a>
+      <a href="/CV-Pablo-Torres-Es.pdf" download="Pablo_Torres_CV_ES.pdf" class="hover:text-electric dark:hover:text-electric transition-colors duration-300 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">[CV]</a>
     </div>
   </section>
 
