@@ -1,0 +1,97 @@
+---
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<section id="contact" class="p-6 bg-bone dark:bg-stone transition-colors duration-300 scroll-mt-0">
+  <h2 class="font-sans font-black text-4xl md:text-5xl uppercase tracking-tighter mb-8">{t('contact.title')}</h2>
+  <div class="flex flex-col gap-16 md:gap-24">
+    <div class="font-mono text-sm w-full max-w-3xl">
+      <p class="mb-8 opacity-80 leading-relaxed uppercase">{t('contact.subtitle')}</p>
+      
+      <form id="contact-form" class="flex flex-col gap-6 w-full" action="https://formsubmit.co/ajax/pablocesar.t.g@gmail.com" method="POST" data-success={lang === 'es' ? '¡Mensaje Enviado!' : 'Message Sent!'}>
+        <input type="hidden" name="_subject" value="Nuevo mensaje desde tu Portafolio web!">
+        <input type="hidden" name="_template" value="box">
+        <input type="hidden" name="_captcha" value="false">
+        <div class="flex flex-col gap-2">
+          <label for="name" class="opacity-50 text-xs uppercase tracking-widest">{lang === 'es' ? 'Nombre' : 'Name'}</label>
+          <input type="text" id="name" name="name" class="bg-transparent border-tech-b p-3 font-mono text-base focus:border-pure dark:focus:border-bone focus:bg-black/[0.02] dark:focus:bg-white/[0.02] outline-none transition-all duration-300" required />
+        </div>
+        
+        <div class="flex flex-col gap-2">
+          <label for="email" class="opacity-50 text-xs uppercase tracking-widest">{lang === 'es' ? 'Correo' : 'Email'}</label>
+          <input type="email" id="email" name="email" class="bg-transparent border-tech-b p-3 font-mono text-base focus:border-pure dark:focus:border-bone focus:bg-black/[0.02] dark:focus:bg-white/[0.02] outline-none transition-all duration-300" required />
+        </div>
+        
+        <div class="flex flex-col gap-2">
+          <label for="message" class="opacity-50 text-xs uppercase tracking-widest">{lang === 'es' ? 'Mensaje' : 'Message'}</label>
+          <textarea id="message" name="message" class="bg-transparent border-tech-b p-3 font-mono text-base focus:border-pure dark:focus:border-bone focus:bg-black/[0.02] dark:focus:bg-white/[0.02] outline-none transition-all duration-300 min-h-[120px] resize-y" required></textarea>
+        </div>
+        
+        <button id="submit-btn" type="submit" class="mt-4 bg-pure dark:bg-bone text-bone dark:text-stone px-8 py-4 font-sans font-bold uppercase tracking-widest text-sm hover:bg-electric dark:hover:bg-gray-300 transition-colors w-fit group">
+          <span id="btn-text">{lang === 'es' ? 'Enviar Mensaje' : 'Send Message'}</span>
+          <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">-&gt;</span>
+        </button>
+      </form>
+
+      <script>
+        const form = document.getElementById('contact-form') as HTMLFormElement;
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        
+        if (form && submitBtn && btnText) {
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const originalText = btnText.innerText;
+            btnText.innerText = '...';
+            submitBtn.setAttribute('disabled', 'true');
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            try {
+              const formData = new FormData(form);
+              const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                  'Accept': 'application/json'
+                }
+              });
+              
+              if (response.ok) {
+                btnText.innerText = form.dataset.success || 'Enviado';
+                form.reset();
+                setTimeout(() => {
+                  btnText.innerText = originalText;
+                  submitBtn.removeAttribute('disabled');
+                  submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }, 4000);
+              } else {
+                throw new Error('Failed');
+              }
+            } catch (error) {
+              btnText.innerText = 'Error';
+              setTimeout(() => {
+                btnText.innerText = originalText;
+                submitBtn.removeAttribute('disabled');
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+              }, 3000);
+            }
+          });
+        }
+      </script>
+    </div>
+
+  </div>
+  
+  <footer class="mt-24 pt-8 border-t-[1px] border-pure dark:border-bone border-opacity-10 dark:border-opacity-10 text-center font-mono text-xs opacity-70">
+    <p>{lang === 'es' ? 'Hecho por ' : 'Made by '} 
+      <a href="https://www.linkedin.com/in/pablo-cesar-torres/" target="_blank" rel="noopener noreferrer" class="hover:text-electric transition-colors underline underline-offset-4">Pablo Torres</a>
+    </p>
+  </footer>
+</section>

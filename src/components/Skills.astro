@@ -1,0 +1,160 @@
+---
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const skillTracks = [
+  {
+    cat: lang === 'es' ? "Lenguajes" : "Languages",
+    speed: "25s",
+    dir: "normal",
+    items: [
+      { name: "PHP", slug: "php" },
+      { name: "JavaScript", slug: "javascript" },
+      { name: "Node.js", slug: "nodedotjs" },
+      { name: "PHP", slug: "php" },
+      { name: "JavaScript", slug: "javascript" },
+      { name: "Node.js", slug: "nodedotjs" },
+      { name: "PHP", slug: "php" },
+      { name: "JavaScript", slug: "javascript" },
+      { name: "Node.js", slug: "nodedotjs" },
+    ]
+  },
+  {
+    cat: "Frameworks",
+    speed: "30s",
+    dir: "reverse",
+    items: [
+      { name: "React", slug: "react" },
+      { name: "Astro", slug: "astro" },
+      { name: "Next.js", slug: "nextdotjs" },
+      { name: "Angular", slug: "angular" },
+      { name: "Laravel", slug: "laravel" },
+      { name: "Vue.js", slug: "vuedotjs" },
+      { name: "Express", slug: "express" },
+      { name: "React", slug: "react" },
+      { name: "Astro", slug: "astro" },
+    ]
+  },
+  {
+    cat: lang === 'es' ? "Bases de Datos" : "Databases",
+    speed: "22s",
+    dir: "normal",
+    items: [
+      { name: "PostgreSQL", slug: "postgresql" },
+      { name: "MySQL", slug: "mysql" },
+      { name: "SQL Server", slug: "microsoftsqlserver", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" },
+      { name: "SQLite", slug: "sqlite" },
+      { name: "PostgreSQL", slug: "postgresql" },
+      { name: "MySQL", slug: "mysql" },
+      { name: "SQL Server", slug: "microsoftsqlserver", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" },
+      { name: "SQLite", slug: "sqlite" },
+    ]
+  },
+  {
+    cat: lang === 'es' ? "Herramientas" : "Tools",
+    speed: "25s",
+    dir: "normal",
+    items: [
+      { name: "Git", slug: "git" },
+      { name: "GitHub", slug: "github" },
+      { name: "Postman", slug: "postman" },
+      { name: "Git", slug: "git" },
+      { name: "GitHub", slug: "github" },
+      { name: "Postman", slug: "postman" },
+      { name: "Git", slug: "git" },
+      { name: "GitHub", slug: "github" },
+      { name: "Postman", slug: "postman" },
+    ]
+  }
+];
+
+const softSkills = lang === 'es' 
+  ? ["Comunicación efectiva", "Trabajo en equipo", "Adaptabilidad", "Resolución de problemas", "Gestión del tiempo", "Comunicación efectiva", "Trabajo en equipo"]
+  : ["Effective communication", "Teamwork", "Adaptability", "Problem solving", "Time management", "Effective communication", "Teamwork"];
+---
+<style>
+  @keyframes scroll-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes scroll-marquee-rev {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  .track-normal {
+    animation: scroll-marquee linear infinite;
+  }
+  .track-reverse {
+    animation: scroll-marquee-rev linear infinite;
+  }
+  .hover-pause:hover .track-normal,
+  .hover-pause:hover .track-reverse {
+    animation-play-state: paused;
+  }
+  /* Optional: we can apply a filter to Devicon to match currentColor styling */
+  .custom-icon {
+    filter: invert(1) brightness(2);
+  }
+  .dark .custom-icon {
+    filter: invert(0) brightness(0) invert(1) grayscale(100%);
+  }
+</style>
+
+<section id="skills" class="border-tech-b scroll-mt-0 bg-bone dark:bg-stone transition-colors duration-300 overflow-hidden">
+  <div class="p-8 border-tech-b">
+    <h2 class="font-sans font-black text-4xl md:text-6xl uppercase tracking-tighter">{t('skills.title')}</h2>
+  </div>
+  
+  <div class="flex flex-col">
+    {skillTracks.map((track, i) => (
+      <div class={`flex flex-col sm:flex-row items-center border-tech-b hover-pause ${i % 2 === 0 ? 'bg-pure text-bone dark:bg-bone dark:text-stone' : 'bg-bone text-pure dark:bg-stone dark:text-bone'}`}>
+        <div class="w-full sm:w-48 p-4 shrink-0 sm:border-r border-current border-opacity-20 z-10 bg-inherit flex items-center justify-center sm:justify-start">
+          <h3 class="font-mono text-xs uppercase font-bold tracking-widest">{track.cat}</h3>
+        </div>
+        <div class="relative flex w-full overflow-hidden whitespace-nowrap p-4 mask-edges">
+          <div class={`flex shrink-0 w-max ${track.dir === 'reverse' ? 'track-reverse' : 'track-normal'}`} style={`animation-duration: ${track.speed};`}>
+            {track.items.map(item => (
+              <div class="flex items-center gap-2 mx-8 opacity-70 hover:opacity-100 transition-opacity">
+                <img src={item.iconSrc || `https://cdn.simpleicons.org/${item.slug}/000000`} class={`w-6 h-6 object-contain ${(item.slug === 'mysql' || item.slug === 'microsoftsqlserver') ? 'scale-[1.7]' : ''} ${i % 2 === 0 ? 'invert dark:invert-0' : 'dark:invert'} ${item.iconSrc ? 'brightness-0' : ''}`} alt={item.name} loading="lazy" />
+                <span class="font-sans font-black text-2xl md:text-3xl uppercase tracking-tighter">{item.name}</span>
+              </div>
+            ))}
+            {track.items.map(item => (
+              <div class="flex items-center gap-2 mx-8 opacity-70 hover:opacity-100 transition-opacity" aria-hidden="true">
+                <img src={item.iconSrc || `https://cdn.simpleicons.org/${item.slug}/000000`} class={`w-6 h-6 object-contain ${(item.slug === 'mysql' || item.slug === 'microsoftsqlserver') ? 'scale-[1.7]' : ''} ${i % 2 === 0 ? 'invert dark:invert-0' : 'dark:invert'} ${item.iconSrc ? 'brightness-0' : ''}`} alt={item.name} loading="lazy" />
+                <span class="font-sans font-black text-2xl md:text-3xl uppercase tracking-tighter">{item.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))}
+
+    <!-- Soft Skills Track -->
+    <div class="flex flex-col sm:flex-row items-center bg-electric dark:bg-gray-800 text-bone border-tech-b hover-pause">
+      <div class="w-full sm:w-48 p-4 shrink-0 sm:border-r border-current border-opacity-20 z-10 bg-inherit flex items-center justify-center sm:justify-start">
+        <h3 class="font-mono text-xs uppercase font-bold tracking-widest">Soft Skills</h3>
+      </div>
+      <div class="relative flex w-full overflow-hidden whitespace-nowrap p-4 mask-edges">
+        <div class="flex shrink-0 w-max track-reverse" style="animation-duration: 30s;">
+          {softSkills.map(item => (
+            <div class="flex items-center gap-2 mx-8">
+              <span class="font-mono text-sm uppercase opacity-90">{item}</span>
+            </div>
+          ))}
+          {softSkills.map(item => (
+            <div class="flex items-center gap-2 mx-8" aria-hidden="true">
+              <span class="font-mono text-sm uppercase opacity-90">{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

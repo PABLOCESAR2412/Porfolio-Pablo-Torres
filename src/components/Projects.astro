@@ -1,0 +1,65 @@
+---
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const projects = [
+  { 
+    id: "01", 
+    name: "Lading Page / Anuncia-T", 
+    desc: lang === 'es' ? "Página web publicitaria para dar a conocer los servicios y el trabajo de la agencia Anuncia-T." : "Advertising landing page to showcase the services and work of the Anuncia-T agency.", 
+    tech: ["Astro", "TailwindCSS", "TypeScript"],
+    link: "https://anuncia-t.vercel.app/"
+  },
+  { 
+    id: "02", 
+    name: "Plottio", 
+    desc: lang === 'es' ? "Sistema integral web para el registro de pegatinas vehiculares (nacionales, interprovinciales y particulares) y gestión automatizada de inventario." : "Comprehensive web system for vehicle decal registration (national, interprovincial, and private) and automated inventory management.", 
+    tech: ["Angular", "NestJS", "TailwindCSS", "TypeScript"],
+    link: "#"
+  },
+  { 
+    id: "03", 
+    name: "Apex-Suite", 
+    desc: lang === 'es' ? "Plataforma avanzada para la gestión de tareas con autenticación segura, base de datos en tiempo real y arquitectura escalable." : "Advanced task management platform with secure authentication, real-time database, and scalable architecture.", 
+    tech: ["Next.js", "React", "Prisma", "TailwindCSS", "Auth.js"],
+    link: "#"
+  }
+];
+---
+<section id="projects" class="border-tech-b scroll-mt-0">
+  <div class="p-6 border-tech-b bg-pure dark:bg-stone text-bone transition-colors duration-300">
+    <h2 class="font-sans font-black text-4xl md:text-5xl uppercase tracking-tighter">{t('projects.title')}</h2>
+  </div>
+  <div class="flex flex-col bg-bone dark:bg-stone transition-colors duration-300">
+    {projects.map((proj, idx) => (
+      <a 
+        href={proj.link} 
+        target={proj.link !== '#' ? "_blank" : undefined}
+        rel={proj.link !== '#' ? "noopener noreferrer" : undefined}
+        class={`group block p-8 relative overflow-hidden transition-all duration-500 hover:bg-black/[0.03] dark:hover:bg-white/[0.05] focus-visible:ring-2 focus-visible:ring-electric focus-visible:outline-none cursor-pointer ${idx !== projects.length - 1 ? 'border-tech-b' : ''}`}
+        aria-label={`View project ${proj.name}`}
+      >
+        <!-- Fade-in overlay background gradient -->
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent to-black/[0.02] dark:to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <article class="relative z-10 opacity-70 group-hover:opacity-100 transition-opacity duration-500">
+          <header class="flex justify-between items-baseline mb-4">
+            <h3 class="font-sans font-black text-2xl uppercase tracking-tight group-hover:text-electric  transition-colors duration-500">{proj.name}</h3>
+            <span class="font-mono text-xs opacity-50">[{proj.id}]</span>
+          </header>
+          <p class="font-mono text-sm mb-6 max-w-lg opacity-80">{proj.desc}</p>
+          <ul class="flex flex-wrap gap-2">
+            {proj.tech.map(t => (
+              <li class="font-mono text-[10px] uppercase border border-current px-2 py-1 rounded-sm tracking-tight">{t}</li>
+            ))}
+          </ul>
+        </article>
+      </a>
+    ))}
+  </div>
+</section>

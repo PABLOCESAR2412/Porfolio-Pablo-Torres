@@ -1,0 +1,157 @@
+---
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const experience = [
+  {
+    role: "Community Manager & Frontend Designer",
+    company: "SimCodec",
+    date: lang === 'es' ? "Agosto 2025 - Actualidad" : "August 2025 - Present",
+    desc: lang === 'es' ? [
+      "Gestión de redes sociales: creación, programación y publicación de contenido estratégico.",
+      "Diseño de interfaces y componentes frontend para sitios web y landing pages utilizando tecnologías modernas.",
+      "Creación de contenido visual y redacción de publicaciones alineadas con la identidad de marca.",
+      "Análisis de métricas en redes sociales para optimizar la estrategia de contenido."
+    ] : [
+      "Social media management: creation, scheduling, and publishing of strategic content.",
+      "Design of interfaces and frontend components for websites and landing pages using modern technologies.",
+      "Creation of visual content and copywriting aligned with brand identity.",
+      "Analysis of social media metrics to optimize content strategy."
+    ]
+  },
+  {
+    role: "Full Stack Developer",
+    company: "Freelancer",
+    date: lang === 'es' ? "Octubre 2024 - Agosto 2025" : "October 2024 - August 2025",
+    desc: lang === 'es' ? [
+      "Desarrollo de proyectos web completos usando Next.js, Astro, Angular y NestJS para clientes internacionales y locales.",
+      "Diseño, desarrollo e implementación de landing pages optimizadas para conversión en el sector tecnológico y e-commerce.",
+      "Gestión de proyectos de manera independiente, desde la definición de requisitos hasta la entrega final."
+    ] : [
+      "Development of complete web projects using Next.js, Astro, Angular, and NestJS for international and local clients.",
+      "Design, development, and implementation of conversion-optimized landing pages in tech and e-commerce sectors.",
+      "Independent project management, from requirements definition to final delivery."
+    ]
+  },
+  {
+    role: lang === 'es' ? "Técnico en Soporte Informático" : "IT Support Technician",
+    company: "Academia Militar General Miguel Iturralde (AMMI)",
+    date: lang === 'es' ? "Septiembre 2023 - Octubre 2024" : "September 2023 - October 2024",
+    desc: lang === 'es' ? [
+      "Realización de diagnósticos, reparaciones e instalaciones de software y hardware.",
+      "Instalación y configuración de sistemas operativos, aplicaciones y controladores.",
+      "Limpieza y mantenimiento preventivo de equipos informáticos.",
+      "Soporte técnico a usuarios resolviendo incidencias."
+    ] : [
+      "Diagnostics, repairs, and installations of software and hardware.",
+      "Installation and configuration of operating systems, applications, and drivers.",
+      "Preventive maintenance and cleaning of computer equipment.",
+      "Technical support for users resolving issues."
+    ]
+  }
+];
+
+const education = [
+  {
+    title: lang === 'es' ? "Tecnología en Desarrollo de Software" : "Technology in Software Development",
+    school: "Instituto Superior Tecnológico Mayor Pedro Traversari",
+    date: lang === 'es' ? "Octubre 2021 - Octubre 2024" : "October 2021 - October 2024"
+  }
+];
+
+const certs = [
+  "CCNA1: Introduction to Networks - Cisco 2026",
+  "CCNA2: Switching, Routing, Wireless Essentials - Cisco 2026",
+  "CCNA3: Enterprise Networking, Security, Automation - Cisco 2026",
+  "Introduction to Cybersecurity - Cisco 2023",
+  lang === 'es' ? "Fundamentos de Python - Cisco 2026" : "Python Fundamentals - Cisco 2026",
+  "Partner: NDG Linux Unhatched - Cisco 2026"
+];
+
+const langs = lang === 'es' 
+  ? ["Español (Nativo)", "Inglés (B1)"] 
+  : ["Spanish (Native)", "English (B1)"];
+---
+
+<div id="experience" class="scroll-mt-0">
+  <!-- EXPERIENCIA LABORAL -->
+  <section class="border-tech-b bg-bone dark:bg-stone transition-colors duration-300">
+    <div class="p-8 border-tech-b">
+      <h2 class="font-sans font-black text-4xl md:text-6xl uppercase tracking-tighter">{t('experience.title')}</h2>
+    </div>
+    <div class="p-8">
+      <div class="flex flex-col gap-12 max-w-4xl">
+        {experience.map(job => (
+          <article class="flex flex-col md:flex-row gap-6 md:gap-12 group">
+            <header class="md:w-1/3 shrink-0">
+              <h4 class="font-sans font-bold text-2xl md:text-3xl uppercase tracking-tight group-hover:text-electric  transition-colors">{job.role}</h4>
+              <p class="font-mono text-base opacity-80 mt-2">{job.company}</p>
+              <p class="font-mono text-xs opacity-50 mt-1">{job.date}</p>
+            </header>
+            <div class="md:w-2/3">
+              <ul class="flex flex-col gap-3 font-mono text-sm opacity-80">
+                {job.desc.map(item => (
+                  <li class="flex items-start leading-relaxed before:content-['>'] before:mr-3 before:mt-[2px] before:opacity-50">{item}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCACIÓN -->
+  <section class="border-tech-b bg-bone dark:bg-stone transition-colors duration-300">
+    <div class="p-8 border-tech-b">
+      <h3 class="font-sans font-black text-3xl md:text-5xl uppercase tracking-tighter">{lang === 'es' ? 'EDUCACIÓN' : 'EDUCATION'}</h3>
+    </div>
+    <div class="p-8">
+      <div class="flex flex-col gap-8 max-w-4xl">
+        {education.map(edu => (
+          <article class="flex flex-col md:flex-row gap-6 md:gap-12">
+            <header class="w-full">
+              <h4 class="font-sans font-bold text-2xl md:text-3xl uppercase tracking-tight">{edu.title}</h4>
+              <p class="font-mono text-base opacity-80 mt-2">{edu.school}</p>
+              <p class="font-mono text-xs opacity-50 mt-1">{edu.date}</p>
+            </header>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICACIONES -->
+  <section class="border-tech-b bg-bone dark:bg-stone transition-colors duration-300">
+    <div class="p-8 border-tech-b">
+      <h3 class="font-sans font-black text-3xl md:text-5xl uppercase tracking-tighter">{lang === 'es' ? 'CERTIFICACIONES' : 'CERTIFICATIONS'}</h3>
+    </div>
+    <div class="p-8">
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-sm opacity-80 max-w-4xl">
+        {certs.map(cert => (
+          <li class="flex items-start leading-relaxed before:content-['*'] before:mr-3 before:opacity-50">{cert}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- IDIOMAS -->
+  <section class="border-tech-b bg-bone dark:bg-stone transition-colors duration-300">
+    <div class="p-8 border-tech-b">
+      <h3 class="font-sans font-black text-3xl md:text-5xl uppercase tracking-tighter">{lang === 'es' ? 'IDIOMAS' : 'LANGUAGES'}</h3>
+    </div>
+    <div class="p-8">
+      <ul class="flex flex-wrap gap-8 font-mono text-sm opacity-80">
+        {langs.map(l => (
+          <li class="flex items-center text-lg before:content-['+'] before:mr-3 before:opacity-50 before:text-electric dark:before:text-gray-400">{l}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</div>

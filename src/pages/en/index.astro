@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Projects from '../../components/Projects.astro';
+import Skills from '../../components/Skills.astro';
+import Experience from '../../components/Experience.astro';
+import Contact from '../../components/Contact.astro';
+import { useTranslations } from '../../i18n/ui';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout title="Pablo Cesar Torres Gilse | Full Stack Developer" lang={lang}>
+  <!-- Hero Section -->
+  <section id="about" class="flex flex-col justify-start pt-8 md:pt-12 px-6 pb-8 border-tech-b relative overflow-hidden bg-bone dark:bg-stone transition-colors duration-300">
+    <!-- Static dot pattern (Adapts to light/dark mode via currentColor) -->
+    <div class="absolute inset-0 opacity-5 pointer-events-none z-0" style="background-image: radial-gradient(circle, currentColor 1px, transparent 1px); background-size: 8px 8px;"></div>
+    
+
+    
+    <div class="relative z-10 font-mono text-xs uppercase text-electric dark:text-gray-400 mb-4 tracking-tight flex justify-between items-center w-full">
+      <span>[00] {t('hero.pretitle')}</span>
+      <span class="border border-electric dark:border-gray-400 px-2 py-1 animate-pulse">{t('hero.status')}</span>
+    </div>
+    <h1 class="relative z-10 font-sans font-black text-5xl md:text-[5rem] lg:text-[5.5rem] uppercase tracking-tighter leading-[0.85] max-w-4xl text-balance">
+      {t('hero.name').split(' ').slice(0, 2).join(' ')}
+      <span class="text-transparent" style="-webkit-text-stroke: 1.5px currentColor;">{t('hero.name').split(' ').slice(2).join(' ')}</span>
+    </h1>
+    <p id="typewriter-desc" class="relative z-10 font-mono text-base max-w-lg mt-4 opacity-80 leading-relaxed text-pretty min-h-[120px] after:content-['|'] after:animate-pulse after:ml-1"></p>
+    <script define:vars={{ desc: t('hero.desc') }}>
+      const el = document.getElementById('typewriter-desc');
+      if (el) {
+        let i = 0;
+        el.innerHTML = '';
+        function type() {
+          if (i < desc.length) {
+            el.innerHTML += desc.charAt(i);
+            i++;
+            setTimeout(type, 20);
+          }
+        }
+        setTimeout(type, 500); // delay before start
+      }
+    </script>
+    <div class="relative z-10 flex gap-4 mt-8 font-mono text-xs">
+      <a href="https://github.com/PABLOCESAR2412" target="_blank" rel="noopener noreferrer" class="hover:text-electric  transition-colors focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">[GITHUB]</a>
+      <a href="https://www.linkedin.com/in/pablo-cesar-torres/" target="_blank" rel="noopener noreferrer" class="hover:text-electric  transition-colors focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">[LINKEDIN]</a>
+      <a href="/CV-Pablo-Torres-En.pdf" download="Pablo_Torres_CV_EN.pdf" class="hover:text-electric  transition-colors focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">[CV]</a>
+    </div>
+  </section>
+
+  <Projects lang={lang} />
+  <Skills lang={lang} />
+  <Experience lang={lang} />
+  <Contact lang={lang} />
+</Layout>

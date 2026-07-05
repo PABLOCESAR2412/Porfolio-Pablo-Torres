@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bone text-pure font-sans antialiased;
+    position: relative;
+    background-image: radial-gradient(rgba(0,0,0,0.3) 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+  }
+  .dark body {
+    background-image: radial-gradient(rgba(255,255,255,0.25) 1.5px, transparent 1.5px);
+  }
+  
+  *, ::before, ::after {
+    @apply transition-colors duration-500;
+  }
+  
+  /* SVG noise filter for bitmap dithering aesthetic */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 50;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+}
+
+@layer utilities {
+  .border-tech {
+    @apply border-pure border-opacity-20 border-[1px];
+  }
+  .border-tech-b {
+    @apply border-b-[1px] border-pure border-opacity-20;
+  }
+  .border-tech-r {
+    @apply border-r-[1px] border-pure border-opacity-20;
+  }
+  .border-tech-l {
+    @apply border-l-[1px] border-pure border-opacity-20;
+  }
+}
