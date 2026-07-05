@@ -1,46 +1,56 @@
-# Astro Starter Kit: Basics
+# ⚡ Pablo Torres - Full Stack Developer Portfolio
 
-```sh
-bun create astro@latest -- --template basics
-```
+Welcome to the source code of my personal portfolio! This is a lightning-fast, static web application built with a **Brutalist / Technical aesthetic**, inspired by data streams, terminal consoles, and modern minimalist design. 
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🛠️ Technology Stack
 
-## 🚀 Project Structure
+- **Framework:** [Astro](https://astro.build/) - For blazing-fast static site generation (SSG) and zero-JS by default.
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS for building the brutalist UI.
+- **Language:** TypeScript
+- **Forms:** AJAX integration with FormSubmit.
 
-Inside of your Astro project, you'll see the following folders and files:
+## ✨ Key Features
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+- **Brutalist Aesthetic:** Monospaced fonts, sharp borders, high-contrast monochrome tones, and subtle CRT/bitmap noise overlays.
+- **i18n (Internationalization):** Fully bilingual (Spanish / English) architecture built seamlessly into Astro routes.
+- **Advanced Theming:** Perfect Dark/Light mode switching with meticulously synced CSS transitions (`duration-300`).
+- **Accessibility & Customization:** Includes a custom widget to dynamically scale font sizes (A-, A, A+, A++) across the entire site using `rem` scaling.
+- **Functional Contact Form:** Seamless AJAX form submission powered by FormSubmit, directly routed to email without captchas or redirects.
+- **Performance:** Optimized LCP, deferred scripts, and efficient image loading.
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🚀 Running Locally
 
-## 🧞 Commands
+To run this project on your local machine:
 
-All commands are run from the root of the project, from a terminal:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/PABLOCESAR2412/Porfolio-Pablo-Torres.git
+   cd Porfolio-Pablo-Torres
+   ```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+2. **Install dependencies:**
+   Using [Bun](https://bun.sh/) (recommended) or npm:
+   ```bash
+   bun install
+   ```
 
-## 👀 Want to learn more?
+3. **Start the development server:**
+   ```bash
+   bun run dev
+   ```
+   The site will be available at `http://localhost:4321`.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📂 Project Structure
+
+- `/src/pages/`: Contains the Astro routes (`index.astro` for ES, `/en/index.astro` for EN).
+- `/src/components/`: Modular UI components (Hero, Projects, Skills, Experience, Contact).
+- `/src/layouts/`: Global layouts including the Sidebar navigation and system controls.
+- `/src/i18n/`: Translation dictionaries (`ui.ts`).
+- `/src/styles/`: Global CSS and Tailwind directives.
+
+## 📄 License
+
+This project is open-source and available under the MIT License. Feel free to draw inspiration from the design!
+
+---
+*SYS. STATUS: ONLINE // BUILD 001.0*

@@ -13,10 +13,6 @@
     background-image: radial-gradient(rgba(255,255,255,0.25) 1.5px, transparent 1.5px);
   }
   
-  *, ::before, ::after {
-    @apply transition-colors duration-500;
-  }
-  
   /* SVG noise filter for bitmap dithering aesthetic */
   body::after {
     content: "";
