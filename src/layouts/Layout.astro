@@ -55,19 +55,13 @@ const t = useTranslations(lang);
           <div class="mb-4 md:mb-12 flex justify-between items-center w-full">
             <p class="font-mono text-sm md:text-base text-stone dark:text-gray-400 uppercase tracking-tight font-black md:font-normal">{t('sidebar.title')}</p>
             
-            <!-- Mobile Controls -->
-            <div class="flex md:hidden items-center gap-4 font-mono text-xs">
-              <button id="theme-toggle-mobile" class="hover:text-electric transition-colors duration-300 outline-none">
-                <span class="dark:hidden">[DARK]</span>
-                <span class="hidden dark:inline">[LIGHT]</span>
-              </button>
-              <a href={lang === 'es' ? '/en' : '/'} class="hover:text-electric transition-colors duration-300 outline-none">
-                [{lang === 'es' ? 'EN' : 'ES'}]
-              </a>
-            </div>
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden font-mono text-sm font-bold uppercase hover:text-electric transition-colors duration-300 outline-none focus-visible:text-electric">
+              [MENU]
+            </button>
           </div>
           
-          <nav class="flex flex-row md:flex-col gap-6 md:gap-4 font-mono text-sm md:text-base uppercase overflow-x-auto whitespace-nowrap w-full pb-3 md:pb-0 scrollbar-hide items-center md:items-start" style="scrollbar-width: none; -ms-overflow-style: none;">
+          <nav class="hidden md:flex flex-col gap-4 font-mono text-base uppercase">
             <a href="#about" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 md:before:mr-1 md:after:ml-1 md:-ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.about')}</a>
             <a href="#projects" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 md:before:mr-1 md:after:ml-1 md:-ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.projects')}</a>
             <a href="#skills" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 md:before:mr-1 md:after:ml-1 md:-ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.skills')}</a>
@@ -129,6 +123,31 @@ const t = useTranslations(lang);
       </aside>
     </div>
 
+    <!-- Mobile Menu Fullscreen Overlay -->
+    <div id="mobile-overlay" class="md:hidden fixed inset-0 z-[100] bg-bone dark:bg-stone flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-300 transform translate-y-4">
+      <button id="mobile-close-btn" class="absolute top-6 right-6 font-mono text-sm uppercase hover:text-electric transition-colors duration-300 focus-visible:text-electric outline-none p-2 font-bold">
+        [X] CLOSE
+      </button>
+      
+      <nav class="flex flex-col gap-8 font-mono text-3xl uppercase text-center items-center tracking-tighter">
+        <a href="#about" class="mobile-link hover:text-electric transition-colors duration-300 outline-none focus-visible:text-electric">{t('nav.about')}</a>
+        <a href="#projects" class="mobile-link hover:text-electric transition-colors duration-300 outline-none focus-visible:text-electric">{t('nav.projects')}</a>
+        <a href="#skills" class="mobile-link hover:text-electric transition-colors duration-300 outline-none focus-visible:text-electric">{t('nav.skills')}</a>
+        <a href="#experience" class="mobile-link hover:text-electric transition-colors duration-300 outline-none focus-visible:text-electric">{t('nav.experience')}</a>
+        <a href="#contact" class="mobile-link hover:text-electric transition-colors duration-300 outline-none focus-visible:text-electric">{t('nav.contact')}</a>
+      </nav>
+
+      <div class="mt-16 flex gap-10 font-mono text-base items-center">
+        <button id="theme-toggle-mobile-menu" class="hover:text-electric transition-colors duration-300 outline-none focus-visible:text-electric">
+          <span class="dark:hidden">[DARK MODE]</span>
+          <span class="hidden dark:inline">[LIGHT MODE]</span>
+        </button>
+        <a href={lang === 'es' ? '/en' : '/'} class="hover:text-electric transition-colors duration-300 outline-none focus-visible:text-electric font-bold">
+          [{lang === 'es' ? 'EN' : 'ES'}]
+        </a>
+      </div>
+    </div>
+
     <script is:inline>
       const handleToggleClick = () => {
         const style = document.createElement('style');
@@ -150,7 +169,31 @@ const t = useTranslations(lang);
           setTimeout(() => style.remove(), 0);
         }
       }
-      document.querySelectorAll("#theme-toggle, #theme-toggle-mobile").forEach(btn => btn?.addEventListener("click", handleToggleClick));
+      document.querySelectorAll("#theme-toggle, #theme-toggle-mobile-menu").forEach(btn => btn?.addEventListener("click", handleToggleClick));
+
+      // Mobile Menu Logic
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const closeBtn = document.getElementById('mobile-close-btn');
+      const overlay = document.getElementById('mobile-overlay');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+
+      const toggleMenu = () => {
+        if (!overlay) return;
+        const isOpen = !overlay.classList.contains('opacity-0');
+        if (isOpen) {
+          overlay.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+          overlay.classList.remove('translate-y-0');
+          document.body.style.overflow = '';
+        } else {
+          overlay.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+          overlay.classList.add('translate-y-0');
+          document.body.style.overflow = 'hidden'; // prevent scrolling
+        }
+      };
+
+      mobileBtn?.addEventListener('click', toggleMenu);
+      closeBtn?.addEventListener('click', toggleMenu);
+      mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
       // Font size logic
       const fontSizes = ['14px', '16px', '18px', '20px'];
