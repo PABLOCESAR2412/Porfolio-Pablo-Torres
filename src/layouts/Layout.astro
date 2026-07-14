@@ -50,22 +50,33 @@ const t = useTranslations(lang);
     <!-- Grid System Container -->
     <div class="w-full max-w-[1440px] bg-bone dark:bg-stone border-tech border-y-0 border-x min-h-screen grid grid-cols-1 md:grid-cols-asymmetric shadow-[0_0_50px_rgba(0,0,0,0.05)] dark:shadow-[0_0_50px_rgba(0,0,0,0.5)] z-0">
       <!-- Nav/Sidebar -->
-      <aside class="border-tech-b md:border-tech-b-0 md:border-tech-r p-8 flex flex-col justify-between sticky top-0 h-auto md:h-screen z-10 bg-bone dark:bg-stone transition-colors duration-300">
-        <div>
-          <div class="mb-12">
-            <p class="font-mono text-sm text-stone dark:text-gray-400 uppercase tracking-tight">{t('sidebar.title')}</p>
+      <aside class="border-tech-b md:border-tech-b-0 md:border-tech-r p-4 md:p-8 flex flex-col md:justify-between sticky top-0 h-auto md:h-screen z-50 bg-bone dark:bg-stone transition-colors duration-300 w-full">
+        <div class="flex flex-col w-full">
+          <div class="mb-4 md:mb-12 flex justify-between items-center w-full">
+            <p class="font-mono text-sm md:text-base text-stone dark:text-gray-400 uppercase tracking-tight font-black md:font-normal">{t('sidebar.title')}</p>
+            
+            <!-- Mobile Controls -->
+            <div class="flex md:hidden items-center gap-4 font-mono text-xs">
+              <button id="theme-toggle-mobile" class="hover:text-electric transition-colors duration-300 outline-none">
+                <span class="dark:hidden">[DARK]</span>
+                <span class="hidden dark:inline">[LIGHT]</span>
+              </button>
+              <a href={lang === 'es' ? '/en' : '/'} class="hover:text-electric transition-colors duration-300 outline-none">
+                [{lang === 'es' ? 'EN' : 'ES'}]
+              </a>
+            </div>
           </div>
           
-          <nav class="flex flex-col gap-4 font-mono text-base uppercase">
-            <a href="#about" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 before:mr-1 after:ml-1 -ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.about')}</a>
-            <a href="#projects" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 before:mr-1 after:ml-1 -ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.projects')}</a>
-            <a href="#skills" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 before:mr-1 after:ml-1 -ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.skills')}</a>
-            <a href="#experience" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 before:mr-1 after:ml-1 -ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.experience')}</a>
-            <a href="#contact" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 before:mr-1 after:ml-1 -ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.contact')}</a>
+          <nav class="flex flex-row md:flex-col gap-6 md:gap-4 font-mono text-sm md:text-base uppercase overflow-x-auto whitespace-nowrap w-full pb-3 md:pb-0 scrollbar-hide items-center md:items-start" style="scrollbar-width: none; -ms-overflow-style: none;">
+            <a href="#about" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 md:before:mr-1 md:after:ml-1 md:-ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.about')}</a>
+            <a href="#projects" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 md:before:mr-1 md:after:ml-1 md:-ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.projects')}</a>
+            <a href="#skills" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 md:before:mr-1 md:after:ml-1 md:-ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.skills')}</a>
+            <a href="#experience" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 md:before:mr-1 md:after:ml-1 md:-ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.experience')}</a>
+            <a href="#contact" class="hover:text-electric transition-colors duration-300 before:content-['['] after:content-[']'] before:text-transparent hover:before:text-electric dark:hover:before:text-gray-300 after:text-transparent hover:after:text-electric dark:hover:after:text-gray-300 md:before:mr-1 md:after:ml-1 md:-ml-2 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none focus-visible:text-electric dark:focus-visible:text-electric">{t('nav.contact')}</a>
           </nav>
 
-          <!-- Controls: Theme & Lang & Font Size -->
-          <div class="mt-12 flex flex-wrap gap-6 font-mono text-sm">
+          <!-- Desktop Controls: Theme & Lang & Font Size -->
+          <div class="hidden md:flex flex-wrap gap-6 font-mono text-sm mt-12">
             <button id="theme-toggle" class="hover:text-electric transition-colors duration-300 flex items-center gap-1 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">
               <!-- Sun Icon for Light Mode -->
               <svg class="dark:hidden w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
@@ -139,7 +150,7 @@ const t = useTranslations(lang);
           setTimeout(() => style.remove(), 0);
         }
       }
-      document.getElementById("theme-toggle")?.addEventListener("click", handleToggleClick);
+      document.querySelectorAll("#theme-toggle, #theme-toggle-mobile").forEach(btn => btn?.addEventListener("click", handleToggleClick));
 
       // Font size logic
       const fontSizes = ['14px', '16px', '18px', '20px'];
