@@ -12,7 +12,7 @@ const t = useTranslations(lang);
 
 <Layout title="Pablo Cesar Torres Gilse | Full Stack Developer" lang={lang}>
   <!-- Hero Section -->
-  <section id="about" class="flex flex-col justify-start pt-8 md:pt-12 px-6 pb-8 border-tech-b relative overflow-hidden bg-bone dark:bg-stone transition-colors duration-300">
+  <section id="about" class="flex flex-col justify-start pt-8 lg:pt-12 px-6 pb-8 border-tech-b relative overflow-hidden bg-bone dark:bg-stone transition-colors duration-300">
     <!-- Static dot pattern (Adapts to light/dark mode via currentColor) -->
     <div class="absolute inset-0 opacity-5 pointer-events-none z-0" style="background-image: radial-gradient(circle, currentColor 1px, transparent 1px); background-size: 8px 8px;"></div>
     
@@ -24,16 +24,16 @@ const t = useTranslations(lang);
     </div>
 
     <!-- Mobile Photo -->
-    <div class="md:hidden w-3/4 max-w-[200px] aspect-square mb-8 relative z-10 mx-auto mt-4">
+    <div class="lg:hidden w-3/4 max-w-[200px] aspect-square mb-8 relative z-10 mx-auto mt-4">
       <img src="/profile.png" alt="Pablo Torres" fetchpriority="high" loading="eager" class="w-full h-full object-cover rounded-none grayscale contrast-125 border border-pure dark:border-bone opacity-90 mix-blend-multiply dark:mix-blend-normal" />
     </div>
 
-    <h1 class="relative z-10 font-sans font-black text-5xl sm:text-6xl md:text-[5rem] lg:text-[5.5rem] uppercase tracking-tighter leading-[0.85] max-w-4xl text-balance transition-colors duration-300 text-center md:text-left">
+    <h1 class="relative z-10 font-sans font-black text-5xl sm:text-6xl lg:text-[5.5rem] uppercase tracking-tighter leading-[0.85] max-w-4xl text-balance transition-colors duration-300 text-center lg:text-left">
       {t('hero.name').split(' ').slice(0, 2).join(' ')}
-      <br class="hidden sm:block md:hidden" />
+      <br class="hidden sm:block lg:hidden" />
       <span class="text-transparent" style="-webkit-text-stroke: 1.5px currentColor;">{t('hero.name').split(' ').slice(2).join(' ')}</span>
     </h1>
-    <p id="typewriter-desc" class="relative z-10 font-mono text-sm md:text-base max-w-lg mt-6 opacity-80 leading-relaxed text-pretty min-h-[140px] md:min-h-[120px] after:content-['|'] after:animate-pulse after:ml-1 text-center md:text-left mx-auto md:mx-0"></p>
+    <p id="typewriter-desc" class="relative z-10 font-mono text-sm lg:text-base max-w-lg mt-6 opacity-80 leading-relaxed text-pretty min-h-[140px] lg:min-h-[120px] after:content-['|'] after:animate-pulse after:ml-1 text-center lg:text-left mx-auto lg:mx-0"></p>
     <script define:vars={{ desc: t('hero.desc') }}>
       const el = document.getElementById('typewriter-desc');
       if (el) {
@@ -49,7 +49,7 @@ const t = useTranslations(lang);
         setTimeout(type, 500); // delay before start
       }
     </script>
-    <div class="relative z-10 flex flex-wrap justify-center md:justify-start gap-4 mt-8 font-mono text-xs w-full">
+    <div class="relative z-10 flex flex-wrap justify-center lg:justify-start gap-4 mt-8 font-mono text-xs w-full">
       <a href="https://github.com/PABLOCESAR2412" target="_blank" rel="noopener noreferrer" class="hover:text-electric  transition-colors duration-300 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">[GITHUB]</a>
       <a href="https://www.linkedin.com/in/pablo-cesar-torres/" target="_blank" rel="noopener noreferrer" class="hover:text-electric  transition-colors duration-300 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">[LINKEDIN]</a>
       <a href="/CV-Pablo-Torres-En.pdf" download="Pablo_Torres_CV_EN.pdf" class="hover:text-electric  transition-colors duration-300 focus-visible:ring-1 focus-visible:ring-pure dark:focus-visible:ring-bone outline-none">[CV]</a>
